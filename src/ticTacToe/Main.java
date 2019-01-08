@@ -4,16 +4,28 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        int N = scanner.nextInt();
-        int A = scanner.nextInt();
-        int B = scanner.nextInt();
-        Random random = new Random(A + B);
-        int sum = 0;
-        for(int i = 0; i < N; i++){     //0 - 5
-            sum += random.nextInt(B - A + 1) + A;
+        Random random = new Random();
+        int k = scanner.nextInt();
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int j = 0;
+        int seed;
+        while (true) {
+            boolean flag = true;
+            seed = k + j;
+            random.setSeed(seed);
+            j++;
+            for (int i = 0; i < n; i++) {
+                if (random.nextGaussian() > m) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                break;
+            }
         }
-        System.out.print(sum);
-        // write your code here
+        System.out.println(seed);
     }
 }
+
